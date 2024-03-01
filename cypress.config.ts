@@ -4,10 +4,10 @@ import path from 'path'
 
 export default defineConfig({
     e2e: {
-        setupNodeEvents(on, config) {
+        setupNodeEvents(_, config) {
             const environmentVariables = dotenv.config({ path: path.resolve('./.env') }).parsed
 
-            config.baseUrl = environmentVariables.VITE_BASE_URL
+            if (environmentVariables) config.baseUrl = environmentVariables.VITE_BASE_URL
 
             return config
         },
