@@ -1,8 +1,14 @@
+import { transparentize } from 'polished'
 import { createGlobalStyle } from 'styled-components'
 
-export const StyledGlobal = createGlobalStyle`
+export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     * {
         box-sizing: border-box;
+
+        &:focus-visible {
+            outline: ${({ theme }) => theme.spaces.two} solid ${({ theme }) => transparentize(0.32, theme.colors.primary)};
+            outline-offset: ${({ theme }) => `-${theme.spaces.one}`};
+        }
     }
 
     html, body {
@@ -15,6 +21,8 @@ export const StyledGlobal = createGlobalStyle`
         word-break: break-word;
         scroll-behavior: smooth;
         height: 100%;
+
+        ${({ isCypressMode, theme }) => isCypressMode && `padding: ${theme.spaces.two}`}
     }
 
     #root {
