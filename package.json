@@ -14,10 +14,13 @@
         "lint:fix": "yarn lint --fix",
         "prettier": "npx prettier src --check",
         "prettier:fix": "yarn prettier --write",
-        "format": "yarn prettier:fix && yarn lint:fix"
+        "format": "yarn prettier:fix && yarn lint:fix",
+        "cypress": "yarn dev & cypress open"
     },
     "dependencies": {
+        "@ariakit/react": "^0.4.1",
         "animate.css": "^4.1.1",
+        "polished": "^4.3.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "reset-css": "^5.0.2",
@@ -31,6 +34,8 @@
         "@typescript-eslint/eslint-plugin": "^7.0.2",
         "@typescript-eslint/parser": "^7.0.2",
         "@vitejs/plugin-react": "^4.2.1",
+        "cypress": "^13.6.6",
+        "dotenv": "^16.4.5",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.29.1",

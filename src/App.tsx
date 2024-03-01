@@ -1,17 +1,11 @@
 import React from 'react'
 
-import { ThemeProvider } from 'styled-components'
-
-import 'reset-css'
-import 'animate.css/animate.min.css'
-
-import { theme } from './theme'
-
-import { StyledGlobal } from '~/styles'
+import { Link } from '~/components/Link'
+import { Setup } from '~/Setup'
 
 export const App: React.FC = () => (
-    <ThemeProvider theme={theme}>
-        <StyledGlobal />
+    <Setup>
         <h1>HarvTech</h1>
-    </ThemeProvider>
+        <Link href={'https://github.com/tech-warriors-corporation'} text={'Tech Warriors'} />
+    </Setup>
 )
