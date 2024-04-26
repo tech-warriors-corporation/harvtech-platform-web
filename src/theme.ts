@@ -9,5 +9,10 @@ export const theme: DefaultTheme = {
     spaces: {
         one: '2px',
         two: '4px',
+        three: '8px',
+        four: '16px',
+    },
+    times: {
+        short: '200ms',
     },
 }
