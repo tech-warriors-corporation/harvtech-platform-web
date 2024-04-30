@@ -7,7 +7,7 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
 
         &:focus-visible {
             outline: ${({ theme }) => theme.spaces.two} solid ${({ theme }) => transparentize(0.32, theme.colors.primary)};
-            outline-offset: ${({ theme }) => `-${theme.spaces.one}`};
+            outline-offset: 0;
         }
     }
 
@@ -35,5 +35,9 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Kanit', sans-serif;
         color: ${({ theme }) => theme.colors.primary};
+    }
+
+    button{
+        transition: background-color ${({ theme }) => theme.times.short};
     }
 `
