@@ -16,8 +16,7 @@
         "prettier:fix": "yarn prettier --write",
         "format": "yarn prettier:fix && yarn lint:fix",
         "cypress:open": "cypress open",
-        "cypress:check": "yarn dev & (sleep 2 && cypress run --e2e --browser chrome && cypress run --component --browser chrome)",
-        "husky:pre-commit": "yarn format && yarn cypress:check"
+        "cypress:check": "cypress run --e2e --browser chrome && cypress run --component --browser chrome"
     },
     "dependencies": {
         "@ariakit/react": "^0.4.1",
