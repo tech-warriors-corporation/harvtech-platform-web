@@ -16,11 +16,14 @@
 // Import commands.js using ES2015 syntax:
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+import { MemoryRouter } from 'react-router-dom'
+
 import { mount } from 'cypress/react18'
 
 import './commands'
 
-import { Setup } from '~/Setup'
+import { Wrapper } from '~/components/Wrapper'
+import { Routes } from '~/routes'
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -35,7 +38,11 @@ declare global {
 }
 
 Cypress.Commands.add('mount', (Component) => {
-    mount(<Setup isCypressMode={true}>{Component}</Setup>)
+    mount(
+        <MemoryRouter initialEntries={[Routes.HOME]}>
+            <Wrapper isCypressMode={true}>{Component}</Wrapper>
+        </MemoryRouter>,
+    )
 })
 
 // Example use:
