@@ -57,10 +57,10 @@ yarn preview
 
 ## Setup JetBrains (IDE)
 
-### Configure lint
+### Configure Lint
 Go to `File > Settings > Languages & Frameworks > JavaScript > Code Quality Tools > ESLint`, select **Automatic ESLint configuration** and check **Run eslint --fix on save**, or read the [ESLint documentation for WebStorm](https://www.jetbrains.com/help/webstorm/eslint.html).
 
-### Configure prettier
+### Configure Prettier
 Go to `File > Settings > Languages & Frameworks > JavaScript > Prettier`, check **On 'Reformat Code' action** and check **On save**, or read the [Prettier documentation for WebStorm](https://www.jetbrains.com/help/webstorm/prettier.html).
 
 ## Lint
