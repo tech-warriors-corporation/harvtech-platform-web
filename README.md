@@ -26,7 +26,7 @@ Follow all commands bellow.
 ### Environment
 Create **.env** file in **root** folder with content.
 ```
-VITE_BASE_URL=http://localhost:5173
+VITE_BASE_URL=<set base URL 🔑>
 VITE_API_URL=<set API URL 🔑>
 ```
 
