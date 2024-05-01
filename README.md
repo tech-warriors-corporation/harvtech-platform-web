@@ -112,7 +112,7 @@ Helpers, components, pages and others files should be very specific in file name
 ## Prototype of components, colors, fonts and others
 You can access [our Figma project](https://www.figma.com/file/PpsZVwe459CmUD76YnPbqJ/HarvTech).
 
-## Roadmap:
+## Roadmap
 - [X] Upload in [Netlify](https://www.netlify.com).
 - [X] Add a router in project.
 - [X] Configure environment variables in [Netlify](https://www.netlify.com).
