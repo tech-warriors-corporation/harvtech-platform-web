@@ -37,7 +37,7 @@ yarn
 
 ### Active Husky hooks (if not automatically configured)
 ```
-yarn husky install
+yarn prepare
 ```
 
 ### Start
