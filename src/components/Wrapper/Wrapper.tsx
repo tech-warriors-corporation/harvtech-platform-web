@@ -29,7 +29,7 @@ export const Wrapper: React.FC<Props> = ({ isCypressMode = false, children }) =>
         const reader = new FileReader()
         const fileNameParts = file.name.split('.')
 
-        setFileType(fileNameParts.pop())
+        setFileType(fileNameParts.pop() as string)
 
         reader.readAsDataURL(file)
 
