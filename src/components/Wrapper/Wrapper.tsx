@@ -1,5 +1,6 @@
-import React, { PropsWithChildren } from 'react'
+import React, { ChangeEvent, PropsWithChildren, useState } from 'react'
 
+import axios from 'axios'
 import { ThemeProvider } from 'styled-components'
 
 import 'reset-css'
@@ -16,29 +17,58 @@ type Props = {
     isCypressMode?: boolean
 } & PropsWithChildren
 
-export const Wrapper: React.FC<Props> = ({ isCypressMode = false, children }) => (
-    <ThemeProvider theme={theme}>
-        <div hidden data-cy={'wrapper'} />
+export const Wrapper: React.FC<Props> = ({ isCypressMode = false, children }) => {
+    const [fileContent, setFileContent] = useState('')
+    const [fileType, setFileType] = useState('')
 
-        <StyledGlobal isCypressMode={isCypressMode as boolean} />
+    const onChangeFile = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event?.target?.files?.[0]
 
-        {isCypressMode ? (
-            children
-        ) : (
-            <StyledWrapper>
-                <header>
-                    <h1>HarvTech</h1>
-                </header>
-                <main>
-                    <Button text={'Tech Warriors'} onClick={() => alert('Tech Warriors')} />
-                    {children}
-                </main>
-                <footer>
-                    <Link href={Routes.HOME} text={'Home'} />
-                    <Link href={Routes.LOGIN} text={'Login'} />
-                    <Link href={'https://github.com/tech-warriors-corporation'} text={'Tech Warriors'} />
-                </footer>
-            </StyledWrapper>
-        )}
-    </ThemeProvider>
-)
+        if (!file) return
+
+        const reader = new FileReader()
+        const fileNameParts = file.name.split('.')
+
+        setFileType(fileNameParts.pop())
+
+        reader.readAsDataURL(file)
+
+        reader.onload = () => setFileContent(reader.result as string)
+    }
+
+    const uploadFile = () => {
+        if (!fileContent || !fileType) return
+
+        axios.post(`${import.meta.env.VITE_API_URL}/upload-file`, {
+            file: { content: fileContent, type: fileType },
+        })
+    }
+
+    return (
+        <ThemeProvider theme={theme}>
+            <div hidden data-cy={'wrapper'} />
+
+            <StyledGlobal isCypressMode={isCypressMode as boolean} />
+
+            {isCypressMode ? (
+                children
+            ) : (
+                <StyledWrapper>
+                    <header>
+                        <h1>HarvTech</h1>
+                    </header>
+                    <main>
+                        <input type={'file'} onChange={onChangeFile} accept='.jpg, .jpeg, .png' />
+                        <Button text={'Upload file'} onClick={uploadFile} />
+                        {children}
+                    </main>
+                    <footer>
+                        <Link href={Routes.HOME} text={'Home'} />
+                        <Link href={Routes.LOGIN} text={'Login'} />
+                        <Link href={'https://github.com/tech-warriors-corporation'} text={'Tech Warriors'} />
+                    </footer>
+                </StyledWrapper>
+            )}
+        </ThemeProvider>
+    )
+}
