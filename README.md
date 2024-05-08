@@ -126,6 +126,7 @@ You can access [our Figma project](https://www.figma.com/file/PpsZVwe459CmUD76Yn
 - [ ] Code Coverage with Cypress.
 - [ ] Read about maps for mark points and monitoring in farming (satellite JS library), like [Satellite (GitHub)](https://github.com/shashwatak/satellite-js) and [Satellite (YouTube)](https://www.youtube.com/watch?v=SctXG86xPw0).
 - [ ] Review project.
+- [ ] Add [Rollbar](https://rollbar.com).
 
 ## Thanks for read
 Product made by **[Tech Warriors](https://github.com/tech-warriors-corporation)**.
