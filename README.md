@@ -110,7 +110,7 @@ cypress:check
 Helpers, components, pages and others files should be very specific in file names.
 
 ## Prototype of components, colors, fonts and others
-You can access [our Figma project](https://www.figma.com/file/PpsZVwe459CmUD76YnPbqJ/HarvTech).
+You can access [our Figma project](https://www.figma.com/proto/PpsZVwe459CmUD76YnPbqJ/HarvTech?node-id=256-280&t=NirCfSXcluKA1giG-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=256%3A280).
 
 ## Roadmap
 - [X] Upload in [Netlify](https://www.netlify.com).
