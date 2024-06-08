@@ -39,7 +39,7 @@ export const Wrapper: React.FC<Props> = ({ isCypressMode = false, children }) =>
     const uploadFile = () => {
         if (!fileContent || !fileType) return
 
-        axios.post(`${import.meta.env.VITE_API_URL}/upload-file`, {
+        axios.post(`${import.meta.env.VITE_API_URL}/azure/predict`, {
             file: { content: fileContent, type: fileType },
         })
     }
