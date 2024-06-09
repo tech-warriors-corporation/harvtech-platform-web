@@ -9,6 +9,7 @@ import 'animate.css/animate.min.css'
 import { Button } from '~/components/Button'
 import { Link } from '~/components/Link'
 import { StyledWrapper } from '~/components/Wrapper/styles'
+import { ModelType } from '~/enums/ModelType'
 import { Routes } from '~/routes'
 import { StyledGlobal } from '~/styles'
 import { theme } from '~/theme'
@@ -39,7 +40,8 @@ export const Wrapper: React.FC<Props> = ({ isCypressMode = false, children }) =>
     const uploadFile = () => {
         if (!fileContent || !fileType) return
 
-        axios.post(`${import.meta.env.VITE_API_URL}/azure/predict`, {
+        axios.post(`${import.meta.env.VITE_API_URL}/predict/image`, {
+            modelType: ModelType.RICE_LEAF,
             file: { content: fileContent, type: fileType },
         })
     }
