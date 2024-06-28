@@ -44,7 +44,8 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
         line-height: 1;
     }
 
-    button{
+    button, a{
         transition: background-color ${({ theme }) => theme.times.short};
+        font-family: inherit;
     }
 `
