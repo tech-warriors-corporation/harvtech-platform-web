@@ -30,7 +30,11 @@
         "baseUrl": ".",
         "types": ["cypress", "node"],
         "paths": {
-            "~/*": ["src/*"]
+            "~components/*": ["./src/components/*"],
+            "~enums/*": ["./src/enums/*"],
+            "~layouts/*": ["./src/layouts/*"],
+            "~pages/*": ["./src/pages/*"],
+            "~utils/*": ["./src/utils/*"],
         }
     },
     "include": [
@@ -44,6 +48,8 @@
         }
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "*.spec.cy.tsx",
+        "**/*.d.ts",
     ]
 }
