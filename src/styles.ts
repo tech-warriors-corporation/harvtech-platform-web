@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { focusVisibleOutline } from '~utils/css-toolkit'
+import { focusVisibleOutline, selectionStyles } from '~utils/css-toolkit'
 
 export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     * {
@@ -23,13 +23,11 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
         ${({ isCypressMode, theme }) => isCypressMode && `padding: ${theme.spaces.two}`};
 
         ::-moz-selection{
-            color: ${({ theme }) => theme.colors.background};
-            background-color: ${({ theme }) => theme.colors.primary};
+            ${selectionStyles};
         }
 
         ::selection{
-            color: ${({ theme }) => theme.colors.background};
-            background-color: ${({ theme }) => theme.colors.primary};
+            ${selectionStyles};
         }
     }
 

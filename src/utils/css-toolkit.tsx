@@ -12,3 +12,8 @@ export const fixSize = (size: string) => css`
     width: ${size};
     height: ${size};
 `
+
+export const selectionStyles = css`
+    color: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.colors.primary};
+`
