@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
-import { Home } from '~/pages/Home'
-import { Login } from '~/pages/Login'
-import { Routes } from '~/routes'
+import { Routes } from '~enums/Routes'
+import { Home } from '~pages/Home'
+import { Login } from '~pages/Login'
 
 const router = createBrowserRouter([
     {
