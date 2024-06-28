@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-export const StyledLink = styled(Link)`
-    color: ${({ theme }) => theme.colors.primary};
+import { focusVisibleOutline } from '~utils/css-toolkit'
+
+export const StyledLink = styled(Link)<{ color: string }>`
+    color: ${({ color }) => color};
     text-decoration: underline;
     width: fit-content;
+
+    ${({ color }) => focusVisibleOutline(color)}
 `

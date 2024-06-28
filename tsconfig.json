@@ -27,10 +27,14 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "incremental": true,
-        "baseUrl": ".",
+        "baseUrl": "src",
         "types": ["cypress", "node"],
         "paths": {
-            "~/*": ["src/*"]
+            "~components/*": ["components/*"],
+            "~enums/*": ["enums/*"],
+            "~layouts/*": ["layouts/*"],
+            "~pages/*": ["pages/*"],
+            "~utils/*": ["utils/*"],
         }
     },
     "include": [
@@ -44,6 +48,9 @@
         }
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "*.spec.cy.tsx",
+        "*.test.cy.tsx",
+        "**/*.d.ts",
     ]
 }

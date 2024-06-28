@@ -1,7 +1,45 @@
-import { darken } from 'polished'
-import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-export const StyledButton = styled.button`
+import { darken } from 'polished'
+import styled, { css } from 'styled-components'
+
+import { ButtonLayout } from './enums'
+
+type Props = {
+    layout: ButtonLayout
+}
+
+const layoutColors = {
+    [ButtonLayout.PRIMARY]: {
+        backgroundColor: 'primary',
+    },
+    [ButtonLayout.SECONDARY]: {
+        backgroundColor: 'text',
+    },
+}
+
+const getLayout = (layout: ButtonLayout) => {
+    const { backgroundColor } = layoutColors[layout]
+
+    return css(({ theme }) => {
+        const backgroundColorValue = theme.colors[backgroundColor]
+
+        return `
+            background-color: ${backgroundColorValue};
+
+            &:hover,
+            &:focus {
+                background-color: ${darken(0.1, backgroundColorValue)};
+            }
+
+            &:active {
+                background-color: ${darken(0.2, backgroundColorValue)};
+            }
+        `
+    })
+}
+
+const styles = css<Props>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,18 +49,19 @@ export const StyledButton = styled.button`
     border: none;
     border-radius: ${({ theme }) => theme.spaces.two};
     color: ${({ theme }) => theme.colors.background};
-    background-color: ${({ theme }) => theme.colors.primary};
     font-weight: 600;
     cursor: pointer;
     padding: ${({ theme }) => `${theme.spaces.three} ${theme.spaces.four}`};
     white-space: nowrap;
+    text-decoration: none;
 
-    &:hover,
-    &:focus {
-        background-color: ${({ theme }) => darken(0.1, theme.colors.primary)};
-    }
+    ${({ layout }) => getLayout(layout)};
+`
 
-    &:active {
-        background-color: ${({ theme }) => darken(0.2, theme.colors.primary)};
-    }
+export const StyledButton = styled.button<Props>`
+    ${styles}
+`
+
+export const StyledLink = styled(Link)<Props>`
+    ${styles}
 `

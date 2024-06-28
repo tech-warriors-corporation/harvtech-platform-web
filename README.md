@@ -96,7 +96,7 @@ yarn format
 
 ## Cypress
 - You should use the `data-cy` attribute to select elements in your tests.
-- File should be called as `*.spec.cy.(ts|tsx)`.
+- File should be called as `*.spec.cy.tsx` for component tests and `*.test.cy.tsx` for e2e tests.
 - Read the [Cypress documentation](https://docs.cypress.io/guides/overview/why-cypress).
 ```
 cypress:open
@@ -128,6 +128,8 @@ You can access [our Figma project](https://www.figma.com/proto/PpsZVwe459CmUD76Y
 - [ ] Review project.
 - [ ] Add [Rollbar](https://rollbar.com).
 - [ ] Set privacy policy in different screens in project.
+- [ ] Use barrel for files like `index.ts` in folders.
+- [ ] Adjust long imports and type problems.
 
 ## Thanks for read
 Product made by **[Tech Warriors](https://github.com/tech-warriors-corporation)**.

@@ -1,14 +1,12 @@
-import { transparentize } from 'polished'
 import { createGlobalStyle } from 'styled-components'
+
+import { focusVisibleOutline, selectionStyles } from '~utils/css-toolkit'
 
 export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     * {
         box-sizing: border-box;
 
-        &:focus-visible {
-            outline: ${({ theme }) => theme.spaces.two} solid ${({ theme }) => transparentize(0.32, theme.colors.primary)};
-            outline-offset: 0;
-        }
+        ${({ theme }) => focusVisibleOutline(theme.colors.primary)}
     }
 
     html, body {
@@ -17,12 +15,20 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
         font-weight: 400;
         color: ${({ theme }) => theme.colors.text};
         background-color: ${({ theme }) => theme.colors.background};
-        line-height: 1;
+        line-height: 1.2;
         word-break: break-word;
         scroll-behavior: smooth;
         height: 100%;
 
-        ${({ isCypressMode, theme }) => isCypressMode && `padding: ${theme.spaces.two}`}
+        ${({ isCypressMode, theme }) => isCypressMode && `padding: ${theme.spaces.two}`};
+
+        ::-moz-selection{
+            ${selectionStyles};
+        }
+
+        ::selection{
+            ${selectionStyles};
+        }
     }
 
     #root {
@@ -34,10 +40,12 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
 
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Kanit', sans-serif;
-        color: ${({ theme }) => theme.colors.primary};
+        font-weight: 500;
+        line-height: 1;
     }
 
-    button{
+    button, a{
         transition: background-color ${({ theme }) => theme.times.short};
+        font-family: inherit;
     }
 `
