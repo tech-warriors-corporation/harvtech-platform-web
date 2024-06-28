@@ -37,9 +37,9 @@ export const Home: React.FC = () => (
                         Bem-vindo ao HarvTech, ajudamos sua empresa a ter um cultivo mais produtivo, rápido, saudável e
                         econômico através da identificação de doenças e pragas. Para continuar, escolha:
                     </StyledSubText>
-                    <Button cyId={'home-login-button'} text={'Entrar'} href={Routes.LOGIN} />
+                    <Button cyId={'home-login-link'} text={'Entrar'} href={Routes.LOGIN} />
                     <Button
-                        cyId={'home-register-button'}
+                        cyId={'home-register-link'}
                         layout={ButtonLayout.SECONDARY}
                         text={'Criar conta'}
                         href={Routes.REGISTER}
