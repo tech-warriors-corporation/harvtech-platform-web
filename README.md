@@ -96,7 +96,7 @@ yarn format
 
 ## Cypress
 - You should use the `data-cy` attribute to select elements in your tests.
-- File should be called as `*.spec.cy.(ts|tsx)`.
+- File should be called as `*.spec.cy.tsx` for component tests and `*.test.cy.tsx` for e2e tests.
 - Read the [Cypress documentation](https://docs.cypress.io/guides/overview/why-cypress).
 ```
 cypress:open
