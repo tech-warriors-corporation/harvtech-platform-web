@@ -1,5 +1,6 @@
-import { Routes } from '~/routes'
+import { Routes } from '~enums/Routes'
 
+// TODO: create e2e tests
 describe('<Login />', () => {
     const title = 'Login'
 
