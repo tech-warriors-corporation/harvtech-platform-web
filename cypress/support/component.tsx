@@ -22,8 +22,8 @@ import { mount } from 'cypress/react18'
 
 import './commands'
 
-import { Wrapper } from '~/components/Wrapper'
-import { Routes } from '~/routes'
+import { Routes } from '~enums/Routes'
+import { Page } from '~layouts/Page/Page'
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -40,7 +40,7 @@ declare global {
 Cypress.Commands.add('mount', (Component) => {
     mount(
         <MemoryRouter initialEntries={[Routes.HOME]}>
-            <Wrapper isCypressMode={true}>{Component}</Wrapper>
+            <Page isCypressMode={true}>{Component}</Page>
         </MemoryRouter>,
     )
 })
