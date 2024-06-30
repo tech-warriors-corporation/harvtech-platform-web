@@ -1,2 +1,2 @@
 export { Button } from './Button'
-export { ButtonLayout } from './enums'
+export { ButtonLayout, ButtonType } from './enums'
