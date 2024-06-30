@@ -14,3 +14,7 @@ export const StyledFooter = styled.footer`
         padding: ${({ theme }) => theme.spaces.four};
     }
 `
+
+export const StyledContent = styled.div`
+    display: inline-block;
+`
