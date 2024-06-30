@@ -31,7 +31,7 @@ export const Home: React.FC = () => (
                 </StyledHeader>
             </StyledBranding>
             <StyledActions>
-                <StyledCard>
+                <StyledCard className={'animate__animated animate__fadeIn'}>
                     <StyledSubTitle data-cy={'home-sub-title'}>Home</StyledSubTitle>
                     <StyledSubText data-cy={'home-sub-text'}>
                         Bem-vindo ao HarvTech, ajudamos sua empresa a ter um cultivo mais produtivo, rápido, saudável e
