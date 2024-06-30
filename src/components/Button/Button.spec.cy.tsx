@@ -1,5 +1,5 @@
 import { Button } from './Button'
-import { ButtonLayout } from './enums'
+import { ButtonLayout, ButtonType } from './enums'
 
 describe('<Button />', () => {
     const cyId = 'id'
@@ -27,12 +27,18 @@ describe('<Button />', () => {
     })
 
     describe('As <button />', () => {
+        const type = ButtonType.SUBMIT
+
         beforeEach(() => {
-            cy.mount(<Button cyId={cyId} text={text} onClick={() => alert('Test with Cypress')} />)
+            cy.mount(<Button cyId={cyId} text={text} type={type} onClick={() => alert('Test with Cypress')} />)
         })
 
         it('Should click in the component', () => {
             cy.get(selector).click()
+        })
+
+        it(`Should use type "${type}" in the component`, () => {
+            cy.get(selector).should('have.attr', 'type', type)
         })
     })
 
