@@ -130,6 +130,8 @@ You can access [our Figma project](https://www.figma.com/proto/PpsZVwe459CmUD76Y
 - [ ] Set privacy policy in different screens in project.
 - [ ] Use barrel for files like `index.ts` in folders.
 - [ ] Adjust long imports and type problems.
+- [ ] Use animations.
+- [ ] Add `robots.txt`.
 
 ## Thanks for read
 Product made by **[Tech Warriors](https://github.com/tech-warriors-corporation)**.

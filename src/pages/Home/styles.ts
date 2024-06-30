@@ -37,6 +37,8 @@ export const StyledBranding = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         width: 100%;
         background: none;
+        padding-top: ${({ theme }) => theme.spaces.six};
+        padding-bottom: ${({ theme }) => theme.spaces.six};
     }
 `
 
@@ -99,6 +101,7 @@ export const StyledActions = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         width: 100%;
         padding-top: 0;
+        padding-bottom: ${({ theme }) => theme.spaces.six};
     }
 `
 
