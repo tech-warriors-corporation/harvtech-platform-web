@@ -1,23 +1,31 @@
 import React from 'react'
 
-import { ButtonLayout } from './enums'
+import { ButtonLayout, ButtonType } from './enums'
 import { StyledButton, StyledLink } from './styles'
 
 type Props = {
     text: string
     href?: string
     onClick?: () => void
+    type?: ButtonType
     layout?: ButtonLayout
     cyId?: string
 }
 
-export const Button: React.FC<Props> = ({ text, href, onClick, layout = ButtonLayout.PRIMARY, cyId }) =>
+export const Button: React.FC<Props> = ({
+    text,
+    href,
+    onClick,
+    type = ButtonType.BUTTON,
+    layout = ButtonLayout.PRIMARY,
+    cyId,
+}) =>
     href ? (
         <StyledLink data-cy={cyId} layout={layout} to={href}>
             {text}
         </StyledLink>
     ) : (
-        <StyledButton data-cy={cyId} layout={layout} onClick={onClick}>
+        <StyledButton data-cy={cyId} type={type} layout={layout} onClick={onClick}>
             {text}
         </StyledButton>
     )
