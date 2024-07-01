@@ -11,15 +11,16 @@ export type Props = {
     href: string
     target?: Target
     color?: string
+    className?: string
     cyId?: string
 }
 
-export const Link: React.FC<Props> = ({ text, href, target, color, cyId }) => {
+export const Link: React.FC<Props> = ({ text, href, target, color, className, cyId }) => {
     const { colors } = useTheme()
     const linkColor = useMemo(() => color ?? colors.primary, [color, colors])
 
     return (
-        <StyledLink data-cy={cyId} to={href} target={target} color={linkColor}>
+        <StyledLink data-cy={cyId} to={href} target={target} color={linkColor} className={className}>
             {text}
         </StyledLink>
     )

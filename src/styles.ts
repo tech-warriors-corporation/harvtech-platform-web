@@ -45,7 +45,7 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     }
 
     button, a{
-        transition: background-color ${({ theme }) => theme.times.short};
+        transition: background-color ${({ theme }) => theme.times.short}, opacity ${({ theme }) => theme.times.short};
         font-family: inherit;
     }
 `
