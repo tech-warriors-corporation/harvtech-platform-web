@@ -5,6 +5,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { Routes } from '~enums/Routes'
 import { Home } from '~pages/Home'
 import { Login } from '~pages/Login'
+import { PrivacyPolicyAndDataProcessing } from '~pages/PrivacyPolicyAndDataProcessing'
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     {
         path: Routes.LOGIN,
         element: <Login />,
+    },
+    {
+        path: Routes.PRIVACY_POLICY_AND_DATA_PROCESSING,
+        element: <PrivacyPolicyAndDataProcessing />,
     },
     {
         path: '*',
