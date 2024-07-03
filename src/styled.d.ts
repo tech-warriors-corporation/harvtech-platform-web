@@ -6,6 +6,8 @@ declare module 'styled-components' {
             primary: string
             text: string
             background: string
+            lightGray: string
+            red: string
         }
         spaces: {
             one: string
