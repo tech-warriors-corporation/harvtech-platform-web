@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { focusVisibleOutline, selectionStyles } from '~utils/css-toolkit'
+import { toastStyles } from '~components/Toast'
+import { focusVisibleOutline, fontFamily, selectionStyles } from '~utils/css-toolkit'
 
 export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     * {
@@ -10,7 +11,7 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     }
 
     html, body {
-        font-family: 'Poppins', sans-serif;
+        font-family: ${fontFamily};
         font-size: 16px;
         font-weight: 400;
         color: ${({ theme }) => theme.colors.text};
@@ -19,6 +20,7 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
         word-break: break-word;
         scroll-behavior: smooth;
         height: 100%;
+        overflow-x: hidden;
 
         ${({ isCypressMode, theme }) => isCypressMode && `padding: ${theme.spaces.two}`};
 
@@ -36,6 +38,7 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
         flex-direction: column;
         margin: 0 auto;
         height: inherit;
+        overflow-x: hidden;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -48,4 +51,6 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
         transition: background-color ${({ theme }) => theme.times.short}, opacity ${({ theme }) => theme.times.short};
         font-family: inherit;
     }
+
+    ${toastStyles};
 `

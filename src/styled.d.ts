@@ -6,6 +6,9 @@ declare module 'styled-components' {
             primary: string
             text: string
             background: string
+            lightGray: string
+            darkGray: string
+            red: string
         }
         spaces: {
             one: string
@@ -17,6 +20,7 @@ declare module 'styled-components' {
         }
         times: {
             short: string
+            medium: string
         }
         breakpoints: {
             full: string

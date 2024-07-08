@@ -28,6 +28,7 @@ Create **.env** file in **root** folder with content.
 ```
 VITE_BASE_URL=<set base URL 🔑>
 VITE_API_URL=<set API URL 🔑>
+VITE_STORAGE_PREFIX=<set Storage prefix 🔑>
 ```
 
 ### Install packages
@@ -132,6 +133,7 @@ You can access [our Figma project](https://www.figma.com/proto/PpsZVwe459CmUD76Y
 - [ ] Adjust long imports and type problems.
 - [ ] Use animations.
 - [ ] Add `robots.txt`.
+- [ ] Create checking input length above the component like `12/250 chars`.
 
 ## Thanks for read
 Product made by **[Tech Warriors](https://github.com/tech-warriors-corporation)**.

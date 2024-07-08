@@ -1,4 +1,5 @@
-import React, { PropsWithChildren, useMemo } from 'react'
+import React, { PropsWithChildren, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router'
 
 import { ThemeProvider } from 'styled-components'
 
@@ -14,6 +15,10 @@ import { PageFooter } from './PageFooter'
 import { PageHeader } from './PageHeader'
 import { StyledMain, StyledPage } from './styles'
 
+import { Toast } from '~components/Toast'
+import { Routes } from '~enums/Routes'
+import { useAccount } from '~hooks/useAccount'
+
 type Props = {
     title?: string
     type?: PageType
@@ -21,10 +26,18 @@ type Props = {
 } & PropsWithChildren
 
 export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, children }) => {
+    const { account } = useAccount()
+    const navigate = useNavigate()
+
     const content = useMemo(
         () => (type ? <PageContentLimiter>{children}</PageContentLimiter> : children),
         [children, type],
     )
+
+    useEffect(() => {
+        if (account && (!type || type === PageType.UNLOGGED)) navigate(Routes.DASHBOARD)
+        else if (!account && type === PageType.LOGGED) navigate(Routes.HOME)
+    }, [account, navigate, type])
 
     return (
         <ThemeProvider theme={theme}>
@@ -36,11 +49,13 @@ export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, chil
                 children
             ) : (
                 <StyledPage>
-                    <PageHeader title={title} pageType={type} />
+                    <PageHeader title={title!} pageType={type!} />
                     <StyledMain removePadding={!type}>{content}</StyledMain>
                     <PageFooter />
                 </StyledPage>
             )}
+
+            <Toast />
         </ThemeProvider>
     )
 }
