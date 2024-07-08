@@ -5,7 +5,7 @@ export const useToast = () => {
     const error = (message: string) => {
         toast(message, {
             type: 'error',
-            icon: () => <MdWarning color={'var(--toastify-icon-color-error)'} />,
+            icon: () => <MdWarning aria-hidden={true} color={'var(--toastify-icon-color-error)'} />,
         })
     }
 
