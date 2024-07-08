@@ -1,6 +1,8 @@
 import { transparentize } from 'polished'
 import { css } from 'styled-components'
 
+export const fontFamily = '"Poppins", sans-serif'
+
 export const focusVisibleOutline = (color: string) => css`
     &:focus-visible {
         outline: ${({ theme }) => theme.spaces.two} solid ${transparentize(0.32, color)};
@@ -8,9 +10,16 @@ export const focusVisibleOutline = (color: string) => css`
     }
 `
 
+export const fixHeight = (height: string) => css`
+    height: ${height};
+    min-height: ${height};
+    max-height: ${height};
+`
+
 export const fixSize = (size: string) => css`
     width: ${size};
-    height: ${size};
+
+    ${fixHeight(size)};
 `
 
 export const selectionStyles = css`
