@@ -3,6 +3,7 @@
         "target": "ES5",
         "useDefineForClassFields": true,
         "lib": [
+            "ES2015",
             "ESNext",
             "DOM",
             "DOM.Iterable"
@@ -28,6 +29,7 @@
         "experimentalDecorators": true,
         "incremental": true,
         "baseUrl": "src",
+        "outDir": "./dist",
         "types": ["cypress", "node"],
         "paths": {
             "~components/*": ["components/*"],
@@ -53,6 +55,5 @@
         "node_modules",
         "*.spec.cy.tsx",
         "*.test.cy.tsx",
-        "**/*.d.ts",
     ]
 }

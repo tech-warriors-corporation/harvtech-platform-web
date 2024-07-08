@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, ReactElement } from 'react'
 import * as Ariakit from '@ariakit/react'
 
 import { StyledTooltip, StyledTooltipAnchor } from './styles'
@@ -9,7 +9,7 @@ type Props = {
 
 export const Tooltip: React.FC<PropsWithChildren<Props>> = ({ text, children }) => (
     <Ariakit.TooltipProvider showTimeout={0} hideTimeout={0}>
-        <StyledTooltipAnchor render={children} />
+        <StyledTooltipAnchor render={children as ReactElement} />
         <StyledTooltip>{text}</StyledTooltip>
     </Ariakit.TooltipProvider>
 )

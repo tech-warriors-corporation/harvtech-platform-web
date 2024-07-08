@@ -24,7 +24,8 @@ const getLayout = (layout: ButtonLayout) => {
     const { backgroundColor } = layoutColors[layout]
 
     return css(({ theme }) => {
-        const backgroundColorValue = theme.colors[backgroundColor]
+        const { colors } = theme
+        const backgroundColorValue = colors[backgroundColor as keyof typeof colors]
 
         return `
             background-color: ${backgroundColorValue};

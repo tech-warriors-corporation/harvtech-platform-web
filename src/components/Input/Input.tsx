@@ -13,7 +13,7 @@ type Props = {
     label: string
     placeholder: string
     name: string
-    form: UseFormReturn
+    form: UseFormReturn<any>
     type?: InputType
     mode?: InputMode
     maxLength?: number
@@ -53,7 +53,7 @@ export const Input: React.FC<Props> = ({
     const { isTouched } = getFieldState(name)
     const error = errors[name]
     const hasError = isTouched && !!error
-    const errorMessage = error?.message || INVALID_FIELD
+    const errorMessage = (error?.message || INVALID_FIELD) as string
 
     const getCyId = (suffix?: string) => {
         let finalCyId = cyId
@@ -76,8 +76,8 @@ export const Input: React.FC<Props> = ({
                     type={internalType}
                     inputMode={mode}
                     required={isRequired}
-                    maxlength={maxLength}
-                    minlength={minLength}
+                    maxLength={maxLength}
+                    minLength={minLength}
                     autoComplete={autoComplete}
                     {...register(name, {
                         required: isRequired,
