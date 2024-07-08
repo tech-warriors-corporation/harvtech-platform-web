@@ -14,6 +14,8 @@ import { PageFooter } from './PageFooter'
 import { PageHeader } from './PageHeader'
 import { StyledMain, StyledPage } from './styles'
 
+import { Toast } from '~components/Toast'
+
 type Props = {
     title?: string
     type?: PageType
@@ -41,6 +43,8 @@ export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, chil
                     <PageFooter />
                 </StyledPage>
             )}
+
+            <Toast />
         </ThemeProvider>
     )
 }
