@@ -50,7 +50,8 @@ export const Input: React.FC<Props> = ({
         [isHidingPassword],
     )
 
-    const { isTouched } = getFieldState(name)
+    const nameAsAny = name as any
+    const { isTouched } = getFieldState(nameAsAny)
     const error = errors[name]
     const hasError = isTouched && !!error
     const errorMessage = (error?.message || INVALID_FIELD) as string
@@ -79,12 +80,12 @@ export const Input: React.FC<Props> = ({
                     maxLength={maxLength}
                     minLength={minLength}
                     autoComplete={autoComplete}
-                    {...register(name, {
+                    {...register(nameAsAny, {
                         required: isRequired,
                         maxLength,
                         minLength,
                         onBlur: async () => {
-                            await trigger(name)
+                            await trigger(nameAsAny)
                         },
                     })}
                 />

@@ -25,11 +25,11 @@ export const Button: React.FC<Props> = ({
     cyId,
 }) =>
     href ? (
-        <StyledLink data-cy={cyId} layout={layout} to={href}>
+        <StyledLink data-cy={cyId} layout={layout!} to={href}>
             {text}
         </StyledLink>
     ) : (
-        <StyledButton data-cy={cyId} type={type} layout={layout} onClick={onClick} disabled={isDisabled || isLoading}>
+        <StyledButton data-cy={cyId} type={type} layout={layout!} onClick={onClick} disabled={isDisabled || isLoading}>
             {isLoading ? (
                 <StyledSpinner role={'status'} aria-live={'polite'} aria-label={'Botão em estado de carregando'} />
             ) : (

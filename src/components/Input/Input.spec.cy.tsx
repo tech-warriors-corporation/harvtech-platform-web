@@ -43,11 +43,11 @@ const InputTest = ({ cyId, type, mode, maxLength, minLength, isRequired }: Props
             placeholder={placeholder}
             name={name}
             type={type ?? InputType.TEXT}
-            mode={mode}
+            mode={mode!}
             form={form}
-            maxLength={maxLength}
-            minLength={minLength}
-            isRequired={isRequired}
+            maxLength={maxLength!}
+            minLength={minLength!}
+            isRequired={isRequired!}
         />
     )
 }

@@ -49,7 +49,7 @@ export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, chil
                 children
             ) : (
                 <StyledPage>
-                    <PageHeader title={title} pageType={type} />
+                    <PageHeader title={title!} pageType={type!} />
                     <StyledMain removePadding={!type}>{content}</StyledMain>
                     <PageFooter />
                 </StyledPage>
