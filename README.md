@@ -28,6 +28,7 @@ Create **.env** file in **root** folder with content.
 ```
 VITE_BASE_URL=<set base URL 🔑>
 VITE_API_URL=<set API URL 🔑>
+VITE_STORAGE_PREFIX=<set Storage prefix 🔑>
 ```
 
 ### Install packages
