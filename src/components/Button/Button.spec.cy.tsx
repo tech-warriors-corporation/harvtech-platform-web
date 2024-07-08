@@ -28,6 +28,7 @@ describe('<Button />', () => {
 
     describe('As <button />', () => {
         const type = ButtonType.SUBMIT
+        const loadingSelector = `${selector} [role="status"]`
 
         beforeEach(() => {
             cy.mount(<Button cyId={cyId} text={text} type={type} onClick={() => alert('Test with Cypress')} />)
@@ -39,6 +40,19 @@ describe('<Button />', () => {
 
         it(`Should use type "${type}" in the component`, () => {
             cy.get(selector).should('have.attr', 'type', type)
+        })
+
+        it('Should show the loading', () => {
+            cy.mount(<Button cyId={cyId} text={text} isLoading={true} />)
+
+            cy.get(loadingSelector).should('exist')
+            cy.get(selector).should('have.prop', 'disabled', true)
+        })
+
+        it('Should be disabled', () => {
+            cy.mount(<Button cyId={cyId} text={text} isDisabled={true} />)
+
+            cy.get(selector).should('have.prop', 'disabled', true)
         })
     })
 
