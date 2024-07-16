@@ -25,7 +25,6 @@ import './commands'
 import { AccountProvider } from '~contexts/AccountProvider'
 import { Routes } from '~enums/Routes'
 import { Page } from '~layouts/Page'
-import Chainable = Cypress.Chainable
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -39,7 +38,7 @@ declare global {
     }
 }
 
-Cypress.Commands.add('mount' as keyof Chainable, (Component) => {
+Cypress.Commands.add('mount', (Component) => {
     mount(
         <AccountProvider>
             <MemoryRouter initialEntries={[Routes.HOME]}>

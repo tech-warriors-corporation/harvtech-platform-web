@@ -9,10 +9,9 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
-import Chainable = Cypress.Chainable
 import { Routes } from '~enums/Routes'
 
-Cypress.Commands.add('login' as keyof Chainable, () => {
+Cypress.Commands.add('login', () => {
     const buttonSelector = 'button[type="submit"]'
 
     cy.visit(Routes.LOGIN)
@@ -22,12 +21,12 @@ Cypress.Commands.add('login' as keyof Chainable, () => {
     cy.get(buttonSelector).click()
 })
 
-Cypress.Commands.add('goBackToLoggedPage' as keyof Chainable, (nextUrl: string) => {
+Cypress.Commands.add('goBackToLoggedPage', (nextUrl: string) => {
     cy.visit(nextUrl)
     cy.url().should('include', Routes.DASHBOARD)
 })
 
-Cypress.Commands.add('goBackToUnloggedPage' as keyof Chainable, (nextUrl: string) => {
+Cypress.Commands.add('goBackToUnloggedPage', (nextUrl: string) => {
     cy.visit(nextUrl)
     cy.url().should('include', Routes.HOME)
 })
