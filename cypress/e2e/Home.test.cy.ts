@@ -46,4 +46,9 @@ describe('<Home />', () => {
         link.contains('Criar conta')
         link.click()
     })
+
+    it('Should not access page as logged', () => {
+        cy.login()
+        cy.goBackToLoggedPage(Routes.HOME)
+    })
 })

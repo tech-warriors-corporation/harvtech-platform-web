@@ -38,9 +38,12 @@ describe('<Login />', () => {
     })
 
     it('Should use valid login', () => {
-        cy.get(emailSelector).type('contato@harvtech.com')
-        cy.get(passwordSelector).type('HarvTech1234!')
-        cy.get(buttonSelector).should('not.be.disabled')
-        cy.get(buttonSelector).click()
+        cy.login()
+        cy.url().should('include', Routes.DASHBOARD)
+    })
+
+    it('Should not access page as logged', () => {
+        cy.login()
+        cy.goBackToLoggedPage(Routes.LOGIN)
     })
 })
