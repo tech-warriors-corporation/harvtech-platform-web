@@ -31,7 +31,7 @@ import { emailSchema, FIELD_MAX_LENGTH, PASSWORD_MIN_LENGTH, passwordSchema } fr
 
 export const Login: React.FC = () => {
     const toast = useToast()
-    const { setAccount } = useAccount()
+    const { setAccessToken } = useAccount()
     const navigate = useNavigate()
     const form = useForm<LoginFormData>({
         resolver: yupResolver(object({ email: emailSchema, password: passwordSchema }).required()),
@@ -47,7 +47,7 @@ export const Login: React.FC = () => {
         try {
             const { accessToken } = await login(formData)
 
-            setAccount(accessToken)
+            setAccessToken(accessToken)
             navigate(Routes.DASHBOARD)
         } catch (error) {
             console.error(error)
