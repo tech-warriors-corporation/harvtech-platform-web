@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
+import { AccountProvider } from '~contexts/AccountProvider'
 import { Routes } from '~enums/Routes'
 import { Dashboard } from '~pages/Dashboard'
 import { Home } from '~pages/Home'
@@ -33,6 +34,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <AccountProvider>
+            <RouterProvider router={router} />
+        </AccountProvider>
     </React.StrictMode>,
 )
