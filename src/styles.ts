@@ -10,6 +10,10 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
         ${({ theme }) => focusVisibleOutline(theme.colors.primary)}
     }
 
+    html{
+        overflow-y: hidden;
+    }
+
     html, body {
         font-family: ${fontFamily};
         font-size: 16px;
@@ -50,6 +54,10 @@ export const StyledGlobal = createGlobalStyle<{ isCypressMode: boolean }>`
     button, a{
         transition: background-color ${({ theme }) => theme.times.short}, opacity ${({ theme }) => theme.times.short};
         font-family: inherit;
+    }
+
+    img{
+        pointer-events: none;
     }
 
     ${toastStyles};
