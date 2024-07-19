@@ -1,13 +1,17 @@
 import { DefaultTheme } from 'styled-components'
 
+const backgroundRgb = '12, 12, 12'
+
 export const theme: DefaultTheme = {
     colors: {
         primary: '#07f6bf',
         text: '#fdfdfd',
         background: '#0c0c0c',
-        lightGray: 'rgba(12, 12, 12, .24)',
+        lightGray: `rgba(${backgroundRgb}, .24)`,
+        lighterGray: `rgba(${backgroundRgb}, .12)`,
         darkGray: '#1c1c1c',
         red: '#fb2416',
+        purple: '#a315fb',
     },
     spaces: {
         one: '2px',

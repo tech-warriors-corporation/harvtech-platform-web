@@ -34,8 +34,8 @@ export const Home: React.FC = () => (
                 <StyledCard className={'animate__animated animate__fadeIn'}>
                     <StyledSubTitle data-cy={'home-sub-title'}>Home</StyledSubTitle>
                     <StyledSubText data-cy={'home-sub-text'}>
-                        Bem-vindo ao HarvTech, ajudamos sua empresa a ter um cultivo mais produtivo, rápido, saudável e
-                        econômico através da identificação de doenças e pragas. Para continuar, escolha:
+                        Bem-vindo ao HarvTech, ajudamos a ter um cultivo mais produtivo, rápido, saudável e econômico
+                        através da identificação de doenças e pragas. Para continuar, escolha:
                     </StyledSubText>
                     <Button cyId={'home-login-link'} text={'Entrar'} href={Routes.LOGIN} />
                     <Button

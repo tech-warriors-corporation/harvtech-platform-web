@@ -7,8 +7,10 @@ declare module 'styled-components' {
             text: string
             background: string
             lightGray: string
+            lighterGray: string
             darkGray: string
             red: string
+            purple: string
         }
         spaces: {
             one: string
