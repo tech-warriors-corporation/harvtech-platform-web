@@ -23,15 +23,17 @@ export const StyledInputWrapper = styled.div`
     width: 100%;
 `
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<{ isPassword: boolean }>`
     padding: 12px ${({ theme }) => theme.spaces.three};
     margin: 0;
     background-color: ${({ theme }) => theme.colors.text};
-    border: ${({ theme }) => theme.spaces.one} solid ${({ theme }) => theme.colors.lightGray};
+    border: ${({ theme }) => theme.spaces.one} solid ${({ theme }) => theme.colors.lighterGray};
     border-radius: ${({ theme }) => theme.spaces.two};
     width: inherit;
     transition: border-color ${({ theme }) => theme.times.short};
     color: ${({ theme }) => theme.colors.background};
+
+    ${({ theme, isPassword }) => isPassword && `padding-right: ${theme.spaces.six}`};
 
     &:focus {
         border-color: ${({ theme }) => theme.colors.primary};

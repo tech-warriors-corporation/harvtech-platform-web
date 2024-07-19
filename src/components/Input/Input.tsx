@@ -19,6 +19,7 @@ type Props = {
     maxLength?: number
     minLength?: number
     isRequired?: boolean
+    noPaste?: boolean
     autoComplete?: string
     cyId?: string
 }
@@ -40,9 +41,11 @@ export const Input: React.FC<Props> = ({
     type = InputType.TEXT,
     mode = InputMode.TEXT,
     isRequired = false,
+    noPaste = false,
 }) => {
     const [internalType, setInternalType] = useState(type)
     const id = useMemo(() => crypto.randomUUID().replaceAll('-', ''), [])
+    const isPassword = useMemo(() => type === InputType.PASSWORD, [type])
     const isHidingPassword = useMemo(() => internalType === InputType.PASSWORD, [internalType])
 
     const passwordButtonText = useMemo(
@@ -64,6 +67,10 @@ export const Input: React.FC<Props> = ({
         return finalCyId ? { 'data-cy': finalCyId } : {}
     }
 
+    const onPaste = (event: Event) => {
+        if (noPaste) event.preventDefault()
+    }
+
     return (
         <StyledWrapper {...getCyId()}>
             <StyledLabel htmlFor={id} {...getCyId('label')}>
@@ -80,6 +87,8 @@ export const Input: React.FC<Props> = ({
                     maxLength={maxLength}
                     minLength={minLength}
                     autoComplete={autoComplete}
+                    onPaste={onPaste}
+                    isPassword={isPassword}
                     {...register(nameAsAny, {
                         required: isRequired,
                         maxLength,
@@ -89,7 +98,7 @@ export const Input: React.FC<Props> = ({
                         },
                     })}
                 />
-                {type === InputType.PASSWORD && (
+                {isPassword && (
                     <Tooltip text={passwordButtonText}>
                         <StyledButton
                             {...getCyId('password-button')}
