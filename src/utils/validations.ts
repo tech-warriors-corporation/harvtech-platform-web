@@ -1,5 +1,7 @@
 import { string } from 'yup'
 
+import { AccountPlan } from '~enums/AccountPlan'
+
 export const REQUIRED_FIELD = 'Campo obrigatório'
 const INVALID_EMAIL = 'E-mail inválido'
 export const FIELD_MAX_LENGTH = 250
@@ -19,3 +21,5 @@ export const passwordSchema = string()
     .matches(/[A-Z]/, 'Necessário pelo menos uma letra maiúscula')
     .min(PASSWORD_MIN_LENGTH, 'Mínimo de 8 caracteres')
     .max(FIELD_MAX_LENGTH, EXCEEDED_MAX_LENGTH)
+
+export const planSchema = string().required().oneOf(Object.values(AccountPlan))

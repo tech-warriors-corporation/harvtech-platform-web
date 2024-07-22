@@ -5,7 +5,7 @@ export const fontFamily = '"Poppins", sans-serif'
 
 export const focusVisibleOutline = (color: string) => css`
     &:focus-visible {
-        outline: ${({ theme }) => theme.spaces.two} solid ${transparentize(0.32, color)};
+        outline: ${({ theme }) => theme.spaces.two} solid ${transparentize(0.12, color)};
         outline-offset: 0;
     }
 `
