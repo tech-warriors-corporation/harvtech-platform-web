@@ -1,4 +1,4 @@
-import { string } from 'yup'
+import { string, TestConfig } from 'yup'
 
 import { AccountPlan } from '~enums/AccountPlan'
 
@@ -23,3 +23,15 @@ export const passwordSchema = string()
     .max(FIELD_MAX_LENGTH, EXCEEDED_MAX_LENGTH)
 
 export const planSchema = string().required().oneOf(Object.values(AccountPlan))
+
+export const compareTest = (compareControlName: string, errorMessage: string): TestConfig => ({
+    name: 'compare',
+    message: errorMessage,
+    test: function (value: any) {
+        const compareValue = this.parent?.[compareControlName]
+
+        if (!value || !compareValue) return true
+
+        return value === compareValue
+    },
+})

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
 import { MdWarning } from 'react-icons/md'
@@ -21,6 +21,7 @@ type Props = {
     isRequired?: boolean
     noPaste?: boolean
     autoComplete?: string
+    watchFields?: string[]
     cyId?: string
 }
 
@@ -32,6 +33,7 @@ export const Input: React.FC<Props> = ({
         getFieldState,
         trigger,
         register,
+        watch,
         formState: { errors },
     },
     autoComplete,
@@ -42,6 +44,7 @@ export const Input: React.FC<Props> = ({
     mode = InputMode.TEXT,
     isRequired = false,
     noPaste = false,
+    watchFields = [],
 }) => {
     const [internalType, setInternalType] = useState(type)
     const id = useMemo(() => crypto.randomUUID().replaceAll('-', ''), [])
@@ -70,6 +73,16 @@ export const Input: React.FC<Props> = ({
     const onPaste = (event: Event) => {
         if (noPaste) event.preventDefault()
     }
+
+    useEffect(() => {
+        if (!watchFields?.length) return
+
+        const subscription = watch(async (_, { name: nameChanged }) => {
+            if (watchFields.includes(nameChanged)) await trigger(nameAsAny)
+        })
+
+        return () => subscription.unsubscribe()
+    }, [watchFields])
 
     return (
         <StyledWrapper {...getCyId()}>
