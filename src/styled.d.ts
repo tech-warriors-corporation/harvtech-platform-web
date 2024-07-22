@@ -6,9 +6,10 @@ declare module 'styled-components' {
             primary: string
             text: string
             background: string
+            darkerGray: string
+            darkGray: string
             lightGray: string
             lighterGray: string
-            darkGray: string
             red: string
             purple: string
         }

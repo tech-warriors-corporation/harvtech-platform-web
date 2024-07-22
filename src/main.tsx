@@ -8,6 +8,7 @@ import { Dashboard } from '~pages/Dashboard'
 import { Home } from '~pages/Home'
 import { Login } from '~pages/Login'
 import { PrivacyPolicyAndDataProcessing } from '~pages/PrivacyPolicyAndDataProcessing'
+import { Register } from '~pages/Register'
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: Routes.LOGIN,
         element: <Login />,
+    },
+    {
+        path: Routes.REGISTER,
+        element: <Register />,
     },
     {
         path: Routes.PRIVACY_POLICY_AND_DATA_PROCESSING,
