@@ -1,10 +1,9 @@
 import React, { PropsWithChildren } from 'react'
 import { UseFormReturn } from 'react-hook-form'
-import * as Ariakit from '@ariakit/react'
 
 import { useTheme } from 'styled-components'
 
-import { StyledCheck, StyledLabel, StyledText } from './styles'
+import { StyledCheck, StyledCheckbox, StyledLabel, StyledText } from './styles'
 
 type Props = {
     name: string
@@ -35,7 +34,7 @@ export const Checkbox: React.FC<PropsWithChildren<Props>> = ({ name, form, cyId,
                 }
             }}
         >
-            <Ariakit.Checkbox {...form.register(nameAsAny)} hidden aria-hidden={'false'} />
+            <StyledCheckbox {...form.register(nameAsAny)} tabIndex={-1} />
             <StyledCheck size={size} data-checked={checked}>
                 <svg
                     style={{ marginTop: `-${one}`, scale: '1.1' }}

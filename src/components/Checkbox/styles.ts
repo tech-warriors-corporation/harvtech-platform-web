@@ -1,3 +1,5 @@
+import * as Ariakit from '@ariakit/react'
+
 import styled from 'styled-components'
 
 import { fixSize } from '~utils/css-toolkit'
@@ -11,6 +13,17 @@ export const StyledLabel = styled.label`
     cursor: pointer;
     line-height: 1;
     user-select: none;
+    position: relative;
+`
+
+export const StyledCheckbox = styled(Ariakit.Checkbox)`
+    opacity: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+
+    ${fixSize('1px')};
 `
 
 export const StyledCheck = styled.div<{ size: string }>`
