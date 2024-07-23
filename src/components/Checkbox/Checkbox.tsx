@@ -30,7 +30,7 @@ export const Checkbox: React.FC<PropsWithChildren<Props>> = ({ name, form, cyId,
 
                 if (key === 'Enter' || key === ' ') {
                     event.preventDefault()
-                    target.querySelector('input').click()
+                    ;(target as HTMLLabelElement)?.querySelector('input')?.click()
                 }
             }}
         >

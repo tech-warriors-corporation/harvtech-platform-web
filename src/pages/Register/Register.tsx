@@ -69,7 +69,6 @@ export const Register: React.FC = () => {
             password: '',
             passwordConfirmation: '',
             plan: AccountPlan.STANDARD,
-            acceptedTerms: false,
         },
         mode: 'all',
     })

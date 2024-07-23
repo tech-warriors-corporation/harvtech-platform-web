@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { ClipboardEvent, ClipboardEventHandler, useEffect, useMemo, useState } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
 import { MdWarning } from 'react-icons/md'
@@ -70,15 +70,15 @@ export const Input: React.FC<Props> = ({
         return finalCyId ? { 'data-cy': finalCyId } : {}
     }
 
-    const onPaste = (event: Event) => {
-        if (noPaste) event.preventDefault()
+    const onPaste: ClipboardEventHandler<HTMLInputElement> = (event?: ClipboardEvent) => {
+        if (noPaste) event?.preventDefault()
     }
 
     useEffect(() => {
         if (!watchFields?.length) return
 
         const subscription = watch(async (_, { name: nameChanged }) => {
-            if (watchFields.includes(nameChanged)) await trigger(nameAsAny)
+            if (watchFields.includes(nameChanged as string)) await trigger(nameAsAny)
         })
 
         return () => subscription.unsubscribe()
