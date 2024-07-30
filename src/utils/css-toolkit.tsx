@@ -55,3 +55,5 @@ export const opacityStyles = css`
         opacity: 0.6;
     }
 `
+
+export const valueToNumber = (value: string) => +value.replace(/\D/g, '')
