@@ -11,7 +11,11 @@ export const PrivacyPolicyAndDataProcessing: React.FC = () => {
     const hasNoAccessToken = useMemo(() => !accessToken, [accessToken])
 
     return (
-        <Page title={'Política de privacidade e dados'} type={hasNoAccessToken ? PageType.UNLOGGED : PageType.LOGGED}>
+        <Page
+            title={'Política de privacidade e dados'}
+            type={hasNoAccessToken ? PageType.UNLOGGED : PageType.LOGGED}
+            removeMenu={true}
+        >
             <StyledContent data-cy={'privacy-policy-and-data-processing'}>
                 <StyledCard>
                     <StyledList data-cy={'privacy-policy-and-data-processing-list'}>

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+import { IconType } from 'react-icons'
 
 import { ButtonLayout, ButtonType } from './enums'
 import { StyledButton, StyledLink, StyledSpinner } from './styles'
 
 type Props = {
-    text: string
+    text?: string
+    id?: string
     href?: string
+    ariaLabel?: string
+    icon?: IconType
     onClick?: () => void
     type?: ButtonType
     layout?: ButtonLayout
@@ -16,24 +20,45 @@ type Props = {
 
 export const Button: React.FC<Props> = ({
     text,
+    id,
     href,
+    ariaLabel,
+    icon,
     onClick,
     type = ButtonType.BUTTON,
     layout = ButtonLayout.PRIMARY,
     isLoading = false,
     isDisabled = false,
     cyId,
-}) =>
-    href ? (
-        <StyledLink data-cy={cyId} layout={layout!} to={href}>
-            {text}
+}) => {
+    const props = useMemo(
+        () => ({ 'data-cy': cyId, id, 'aria-label': ariaLabel, layout }),
+        [cyId, id, ariaLabel, layout],
+    )
+
+    const content = useMemo(
+        () =>
+            icon ? (
+                <>
+                    {icon({ 'aria-hidden': true })} {text}
+                </>
+            ) : (
+                text
+            ),
+        [text, icon],
+    )
+
+    return href ? (
+        <StyledLink to={href} {...props}>
+            {content}
         </StyledLink>
     ) : (
-        <StyledButton data-cy={cyId} type={type} layout={layout!} onClick={onClick} disabled={isDisabled || isLoading}>
+        <StyledButton type={type} disabled={isDisabled || isLoading} onClick={onClick} {...props}>
             {isLoading ? (
                 <StyledSpinner role={'status'} aria-live={'polite'} aria-label={'Botão em estado de carregando'} />
             ) : (
-                text
+                content
             )}
         </StyledButton>
     )
+}
