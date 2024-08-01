@@ -1,0 +1,1 @@
+export { PageMenuVersion } from './PageMenuVersion'
