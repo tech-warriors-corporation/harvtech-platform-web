@@ -2,6 +2,7 @@ import { PageType } from '../enums'
 
 import { PageHeader } from './PageHeader'
 
+// TODO: implement more tests
 describe('<PageHeader />', () => {
     const selector = '[data-cy="page-header"]'
     const logoSelector = '[data-cy="page-header-logo"]'
