@@ -9,10 +9,12 @@ import 'animate.css/animate.min.css'
 import { StyledGlobal } from '../../styles'
 import { theme } from '../../theme'
 
+import { PageProvider } from './context'
 import { PageType } from './enums'
 import { PageContentLimiter } from './PageContentLimiter'
 import { PageFooter } from './PageFooter'
 import { PageHeader } from './PageHeader'
+import { PageMenu } from './PageMenu'
 import { StyledMain, StyledPage } from './styles'
 
 import { Toast } from '~components/Toast'
@@ -24,18 +26,30 @@ const THIRTY_MINUTES = 1000 * 60 * 30
 type Props = {
     title?: string
     type?: PageType
+    removeMenu?: boolean
     isCypressMode?: boolean
 } & PropsWithChildren
 
-export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, children }) => {
+export const Page: React.FC<Props> = ({ title, type, removeMenu, isCypressMode = false, children }) => {
+    if (removeMenu === undefined) removeMenu = type === PageType.UNLOGGED
+
     const { getAccount, getRefreshedToken } = useAccount()
     const navigate = useNavigate()
     const { pathname } = useLocation()
+    const isPageTypeLogged = useMemo(() => type === PageType.LOGGED, [type])
 
-    const content = useMemo(
-        () => (type ? <PageContentLimiter>{children}</PageContentLimiter> : children),
-        [children, type],
-    )
+    const wrapper = useMemo(() => {
+        const components = (
+            <>
+                <PageHeader title={title!} pageType={type!} removeMenu={removeMenu!} />
+                <StyledMain removePadding={!type || !removeMenu}>
+                    {removeMenu ? <PageContentLimiter>{children}</PageContentLimiter> : children}
+                </StyledMain>
+            </>
+        )
+
+        return isPageTypeLogged && !removeMenu ? <PageMenu pageType={type!}>{components}</PageMenu> : components
+    }, [isPageTypeLogged, removeMenu, title, type, children])
 
     const navigateBasedOnAccount = () => {
         const account = getAccount()
@@ -45,7 +59,7 @@ export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, chil
     }
 
     useEffect(() => {
-        if (type !== PageType.LOGGED) return
+        if (!isPageTypeLogged) return
 
         const intervalId = setInterval(async () => {
             const wasSuccessful = await getRefreshedToken()
@@ -56,7 +70,7 @@ export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, chil
         return () => {
             clearInterval(intervalId)
         }
-    }, [type])
+    }, [isPageTypeLogged])
 
     useEffect(() => {
         navigateBasedOnAccount()
@@ -64,21 +78,22 @@ export const Page: React.FC<Props> = ({ title, type, isCypressMode = false, chil
 
     return (
         <ThemeProvider theme={theme}>
-            <div hidden data-cy={'page'} />
+            <PageProvider>
+                <div hidden data-cy={'page'} />
 
-            <StyledGlobal isCypressMode={isCypressMode!} />
+                <StyledGlobal isCypressMode={isCypressMode!} />
 
-            {isCypressMode ? (
-                children
-            ) : (
-                <StyledPage>
-                    <PageHeader title={title!} pageType={type!} />
-                    <StyledMain removePadding={!type}>{content}</StyledMain>
-                    <PageFooter />
-                </StyledPage>
-            )}
+                {isCypressMode ? (
+                    children
+                ) : (
+                    <StyledPage>
+                        {wrapper}
+                        <PageFooter />
+                    </StyledPage>
+                )}
 
-            <Toast />
+                <Toast />
+            </PageProvider>
         </ThemeProvider>
     )
 }

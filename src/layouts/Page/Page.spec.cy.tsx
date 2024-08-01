@@ -1,3 +1,4 @@
+// TODO: implement more tests
 describe('<Page />', () => {
     beforeEach(() => {
         cy.mount(null)
