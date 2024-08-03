@@ -107,7 +107,6 @@ export const Register: React.FC = () => {
                         </StyledText>
 
                         <Input
-                            cyId={'name'}
                             label={'Nome'}
                             placeholder={'Preencha com o nome'}
                             name={'name'}
@@ -117,7 +116,6 @@ export const Register: React.FC = () => {
                         />
 
                         <Input
-                            cyId={'email'}
                             type={InputType.EMAIL}
                             mode={InputMode.EMAIL}
                             label={'E-mail'}
@@ -130,7 +128,6 @@ export const Register: React.FC = () => {
                         />
 
                         <Input
-                            cyId={'emailConfirmation'}
                             type={InputType.EMAIL}
                             mode={InputMode.EMAIL}
                             label={'Confirmação de e-mail'}
@@ -145,7 +142,6 @@ export const Register: React.FC = () => {
                         />
 
                         <Input
-                            cyId={'password'}
                             type={InputType.PASSWORD}
                             label={'Senha'}
                             placeholder={'Preencha com a senha'}
@@ -158,7 +154,6 @@ export const Register: React.FC = () => {
                         />
 
                         <Input
-                            cyId={'passwordConfirmation'}
                             type={InputType.PASSWORD}
                             label={'Confirmação de senha'}
                             placeholder={'Preencha com a confirmação de senha'}
