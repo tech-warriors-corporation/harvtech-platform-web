@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { transparentize } from 'polished'
 import styled from 'styled-components'
 
-import { customScroll, opacityStyles } from '~utils/css-toolkit'
+import { customScroll, fixWidth, opacityStyles } from '~utils/css-toolkit'
 
 const height = '56px'
 
@@ -30,10 +30,11 @@ export const StyledSide = styled.aside<{ isOpened: boolean }>`
     flex-direction: column;
     background-color: ${({ theme }) => transparentize(0.88, theme.colors.primary)};
     height: 100%;
-    width: fit-content;
     border-radius: ${({ theme }) => theme.spaces.two};
     overflow-y: auto;
     z-index: 1;
+
+    ${fixWidth('278px')};
 
     ${customScroll};
 
@@ -43,7 +44,8 @@ export const StyledSide = styled.aside<{ isOpened: boolean }>`
         top: 0;
         background-color: ${({ theme }) => theme.colors.background};
         border-radius: 0;
-        width: 100%;
+
+        ${fixWidth('100%')};
 
         ${({ isOpened }) => isOpened && 'left: 0'};
     }
