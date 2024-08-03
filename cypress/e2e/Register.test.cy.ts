@@ -13,6 +13,7 @@ describe('<Register />', () => {
     const planStandardSelector = `${planSelector}[value="standard"]`
     const acceptedTermsSelector = 'input[name="acceptedTerms"]'
     const buttonSelector = 'button[type="submit"]'
+    const errorMessageSelector = '[data-cy="error-message"]'
 
     beforeEach(() => {
         cy.visit(Routes.REGISTER)
@@ -35,28 +36,44 @@ describe('<Register />', () => {
         cy.get('form').should('exist')
     })
 
-    it('Should show errors', () => {
+    it('Should show required errors', () => {
         cy.get(nameSelector).focus()
         cy.get(nameSelector).blur()
-        cy.get('[data-cy="name-error-message"]').should('exist')
 
         cy.get(emailSelector).focus()
         cy.get(emailSelector).blur()
-        cy.get('[data-cy="email-error-message"]').should('exist')
+
+        cy.get(emailConfirmationSelector).focus()
+        cy.get(emailConfirmationSelector).blur()
+
+        cy.get(passwordSelector).focus()
+        cy.get(passwordSelector).blur()
+
+        cy.get(passwordConfirmationSelector).focus()
+        cy.get(passwordConfirmationSelector).blur()
+
+        cy.get(errorMessageSelector).its('length').should('eq', 5)
+    })
+
+    it('Should be disabled and has errors', () => {
+        cy.get(nameSelector).focus()
+        cy.get(nameSelector).blur()
+
+        cy.get(emailSelector).focus()
+        cy.get(emailSelector).blur()
 
         cy.get(emailSelector).type(email)
         cy.get(emailConfirmationSelector).type(`${email}1`)
         cy.get(emailConfirmationSelector).blur()
-        cy.get('[data-cy="emailConfirmation-error-message"]').should('exist')
 
         cy.get(passwordSelector).focus()
         cy.get(passwordSelector).blur()
-        cy.get('[data-cy="password-error-message"]').should('exist')
 
         cy.get(passwordSelector).type(password)
         cy.get(passwordConfirmationSelector).type(`${password}1`)
         cy.get(passwordConfirmationSelector).blur()
-        cy.get('[data-cy="passwordConfirmation-error-message"]').should('exist')
+
+        cy.get(errorMessageSelector).its('length').should('eq', 3)
 
         cy.get(planStandardSelector).click()
 
