@@ -1,13 +1,15 @@
 import React, { ClipboardEvent, ClipboardEventHandler, useEffect, useMemo, useState } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
-import { MdWarning } from 'react-icons/md'
 
 import { InputMode, InputType } from './enums'
-import { StyledButton, StyledErrorMessage, StyledInput, StyledInputWrapper, StyledLabel, StyledWrapper } from './styles'
+import { StyledButton, StyledInput, StyledInputWrapper, StyledWrapper } from './styles'
 
+import { ErrorMessage } from '~components/ErrorMessage'
+import { Label } from '~components/Label'
 import { Tooltip } from '~components/Tooltip'
-import { FIELD_MAX_LENGTH, INVALID_FIELD, REQUIRED_FIELD } from '~utils/validations'
+import { getUUID } from '~utils/ids'
+import { FIELD_MAX_LENGTH, INVALID_FIELD } from '~utils/validations'
 
 type Props = {
     label: string
@@ -22,7 +24,6 @@ type Props = {
     noPaste?: boolean
     autoComplete?: string
     watchFields?: string[]
-    cyId?: string
 }
 
 export const Input: React.FC<Props> = ({
@@ -37,7 +38,6 @@ export const Input: React.FC<Props> = ({
         formState: { errors },
     },
     autoComplete,
-    cyId,
     minLength,
     maxLength = FIELD_MAX_LENGTH,
     type = InputType.TEXT,
@@ -47,7 +47,7 @@ export const Input: React.FC<Props> = ({
     watchFields = [],
 }) => {
     const [internalType, setInternalType] = useState(type)
-    const id = useMemo(() => crypto.randomUUID().replaceAll('-', ''), [])
+    const id = useMemo(() => getUUID(), [])
     const isPassword = useMemo(() => type === InputType.PASSWORD, [type])
     const isHidingPassword = useMemo(() => internalType === InputType.PASSWORD, [internalType])
 
@@ -61,14 +61,6 @@ export const Input: React.FC<Props> = ({
     const error = errors[name]
     const hasError = isTouched && !!error
     const errorMessage = (error?.message || INVALID_FIELD) as string
-
-    const getCyId = (suffix?: string) => {
-        let finalCyId = cyId
-
-        if (finalCyId && suffix) finalCyId += `-${suffix}`
-
-        return finalCyId ? { 'data-cy': finalCyId } : {}
-    }
 
     const onPaste: ClipboardEventHandler<HTMLInputElement> = (event?: ClipboardEvent) => {
         if (noPaste) event?.preventDefault()
@@ -85,13 +77,11 @@ export const Input: React.FC<Props> = ({
     }, [watchFields])
 
     return (
-        <StyledWrapper {...getCyId()}>
-            <StyledLabel htmlFor={id} {...getCyId('label')}>
-                {label} {isRequired ? <span aria-label={REQUIRED_FIELD}>*</span> : ''}
-            </StyledLabel>
+        <StyledWrapper data-cy={'input'}>
+            <Label label={label} htmlFor={id} isRequired={isRequired!} />
             <StyledInputWrapper>
                 <StyledInput
-                    {...getCyId('input')}
+                    data-cy={'input-field'}
                     id={id}
                     placeholder={placeholder}
                     type={internalType}
@@ -114,7 +104,7 @@ export const Input: React.FC<Props> = ({
                 {isPassword && (
                     <Tooltip text={passwordButtonText}>
                         <StyledButton
-                            {...getCyId('password-button')}
+                            data-cy={'input-password-button'}
                             aria-label={passwordButtonText}
                             type={'button'}
                             onClick={() => setInternalType(isHidingPassword ? InputType.TEXT : type)}
@@ -124,11 +114,7 @@ export const Input: React.FC<Props> = ({
                     </Tooltip>
                 )}
             </StyledInputWrapper>
-            {hasError && (
-                <StyledErrorMessage {...getCyId('error-message')}>
-                    <MdWarning aria-hidden={true} /> {errorMessage}
-                </StyledErrorMessage>
-            )}
+            {hasError && <ErrorMessage message={errorMessage} />}
         </StyledWrapper>
     )
 }
