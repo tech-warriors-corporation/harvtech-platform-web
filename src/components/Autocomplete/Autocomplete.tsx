@@ -17,6 +17,7 @@ type Props = {
     options: AutocompleteOptions
     form: UseFormReturn<any>
     isRequired?: boolean
+    isDisabled?: boolean
 }
 
 export const Autocomplete: React.FC<Props> = ({
@@ -32,10 +33,10 @@ export const Autocomplete: React.FC<Props> = ({
         formState: { errors },
     },
     isRequired = false,
+    isDisabled = false, // TODO: add style for disabled
 }) => {
     const nameAsAny = name as any
     const [search, setSearch] = useState('')
-    const [isStarted, setIsStarted] = useState(false)
     const id = useMemo(() => getUUID(), [])
 
     const filteredOptions = useMemo(
@@ -56,16 +57,8 @@ export const Autocomplete: React.FC<Props> = ({
     )
 
     useEffect(() => {
-        if (isStarted) return
-
-        setIsStarted((previousIsStarted) => {
-            if (previousIsStarted) return previousIsStarted
-
-            setSearch(findOptionText(value))
-
-            return true
-        })
-    }, [value, isStarted])
+        setSearch(findOptionText(value))
+    }, [value])
 
     return (
         <StyledAutocomplete data-cy={'autocomplete'}>
@@ -78,11 +71,7 @@ export const Autocomplete: React.FC<Props> = ({
                         setValue(nameAsAny, '' as any, valueOptions)
                     })
                 }}
-                setSelectedValue={(nextValue: string) => {
-                    setSearch(findOptionText(nextValue))
-
-                    setValue(nameAsAny, nextValue as any, valueOptions)
-                }}
+                setSelectedValue={(nextValue: string) => setValue(nameAsAny, nextValue as any, valueOptions)}
                 selectedValue={search}
                 value={search}
                 orientation={'vertical'}
@@ -102,6 +91,7 @@ export const Autocomplete: React.FC<Props> = ({
                     placeholder={placeholder}
                     name={name}
                     required={isRequired}
+                    disabled={isDisabled!}
                     onBlur={async () => {
                         setValue(nameAsAny, value, { ...valueOptions, shouldTouch: true })
 
