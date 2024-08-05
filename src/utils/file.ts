@@ -4,7 +4,7 @@ export const getBase64 = (file: File): Promise<string> =>
 
         reader.readAsDataURL(file)
 
-        reader.onload = () => resolve(reader.result)
+        reader.onload = () => resolve(reader.result as string)
 
         reader.onerror = (error) => {
             console.error(error)

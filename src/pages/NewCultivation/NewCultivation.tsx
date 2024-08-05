@@ -28,6 +28,7 @@ import { Tooltip } from '~components/Tooltip'
 import { useToast } from '~hooks/useToast'
 import { Page, PageType } from '~layouts/Page'
 import { predictImage } from '~services/predict-service'
+import { Base64File } from '~types/Base64File'
 import { ErrorModel } from '~types/ErrorModel'
 import { removeMarkdown } from '~utils/strings'
 
@@ -47,7 +48,7 @@ export const NewCultivation: React.FC = () => {
 
     const [predictedImages, setPredictedImages] = useState<PredictedImages>([])
     const base64ImagesAsAny = 'base64Images' as any
-    const currentBase64Images = watch(base64ImagesAsAny)
+    const currentBase64Images = watch(base64ImagesAsAny) as Base64File[]
 
     const reset = () => {
         setPredictedImages([])

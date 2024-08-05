@@ -10,6 +10,7 @@ type PredictImageParams = {
 
 type PredictImageResponse = {
     text: string
+    probability: number
 }
 
 export const predictImage = async ({ base64Image: { content, type }, ...params }: PredictImageParams) => {

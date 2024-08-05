@@ -35,13 +35,13 @@ export const Images: React.FC<Props> = ({
 }) => {
     const toast = useToast()
     const nameAsAny = name as any
-    const images = watch(nameAsAny)
+    const images = watch(nameAsAny) as Base64File[]
     const valueOptions = { shouldDirty: true, shouldValidate: true, shouldTouch: true }
 
-    const openFilesManager = (event: MouseEvent) => {
+    const openFilesManager = (event: React.MouseEvent | React.KeyboardEvent) => {
         const labelElement = event.currentTarget as HTMLLabelElement
 
-        labelElement.querySelector('input').click()
+        labelElement.querySelector('input')?.click()
     }
 
     const addImages = async (newImages: File[]) => {
@@ -106,7 +106,7 @@ export const Images: React.FC<Props> = ({
                         }}
                         onChange={async ({ target: { files } }) => {
                             if (isDisabled) return
-                            if (files) await addImages([...files])
+                            if (files) await addImages(Array.from(files))
                         }}
                     />
 
@@ -114,7 +114,7 @@ export const Images: React.FC<Props> = ({
                 </StyledLabel>
             </Tooltip>
 
-            {images.map(({ id, content }, index) => {
+            {images.map(({ id, content }, index: number) => {
                 const text = `Imagem de número ${index + 1}`
                 const label = `Excluir ${text.toLowerCase()}`
 
