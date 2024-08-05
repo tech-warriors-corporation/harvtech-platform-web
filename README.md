@@ -135,6 +135,7 @@ You can access [our Figma project](https://www.figma.com/proto/PpsZVwe459CmUD76Y
 - [ ] Add `robots.txt`.
 - [ ] Create checking input length above the component like `12/250 chars`.
 - [ ] Add [React Helmet](https://github.com/nfl/react-helmet).
+- [ ] Add information logged user.
 
 ## Thanks for read
 Product made by **[Tech Warriors](https://github.com/tech-warriors-corporation)**.
