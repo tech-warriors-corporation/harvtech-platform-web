@@ -1,6 +1,7 @@
 import { transparentize } from 'polished'
 import { css } from 'styled-components'
 
+const halfPercentageValue = '50%'
 export const fontFamily = '"Poppins", sans-serif'
 
 export const focusVisibleOutline = (color: string) => css`
@@ -83,4 +84,10 @@ export const fieldStyles = css`
         font-size: 0.875rem;
         font-family: ${fontFamily};
     }
+`
+
+export const centerStyles = css`
+    top: ${halfPercentageValue};
+    left: ${halfPercentageValue};
+    transform: translate(-${halfPercentageValue}, -${halfPercentageValue});
 `
