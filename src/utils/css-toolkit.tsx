@@ -10,6 +10,12 @@ export const focusVisibleOutline = (color: string) => css`
     }
 `
 
+export const fixWidth = (width: string) => css`
+    width: ${width};
+    min-width: ${width};
+    max-width: ${width};
+`
+
 export const fixHeight = (height: string) => css`
     height: ${height};
     min-height: ${height};
@@ -17,8 +23,7 @@ export const fixHeight = (height: string) => css`
 `
 
 export const fixSize = (size: string) => css`
-    width: ${size};
-
+    ${fixWidth(size)};
     ${fixHeight(size)};
 `
 
@@ -57,3 +62,25 @@ export const opacityStyles = css`
 `
 
 export const valueToNumber = (value: string) => +value.replace(/\D/g, '')
+
+export const fieldStyles = css`
+    padding: 12px ${({ theme }) => theme.spaces.three};
+    margin: 0;
+    background-color: ${({ theme }) => theme.colors.text};
+    border: ${({ theme }) => theme.spaces.one} solid ${({ theme }) => theme.colors.lighterGray};
+    border-radius: ${({ theme }) => theme.spaces.two};
+    width: inherit;
+    transition: border-color ${({ theme }) => theme.times.short};
+    color: ${({ theme }) => theme.colors.background};
+
+    &:focus {
+        border-color: ${({ theme }) => theme.colors.primary};
+    }
+
+    &::placeholder {
+        line-height: inherit;
+        color: ${({ theme }) => theme.colors.background};
+        font-size: 0.875rem;
+        font-family: ${fontFamily};
+    }
+`

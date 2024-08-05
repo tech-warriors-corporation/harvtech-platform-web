@@ -12,7 +12,6 @@ const initialValue = 'abcd'
 const label = 'Field'
 
 type Props = {
-    cyId: string
     type?: InputType
     mode?: InputMode
     maxLength?: number
@@ -20,7 +19,7 @@ type Props = {
     isRequired?: boolean
 }
 
-const InputTest = ({ cyId, type, mode, maxLength, minLength, isRequired }: Props) => {
+const InputTest = ({ type, mode, maxLength, minLength, isRequired }: Props) => {
     const name = 'field'
     const placeholder = 'Fill the field'
     const form = useForm({
@@ -38,7 +37,6 @@ const InputTest = ({ cyId, type, mode, maxLength, minLength, isRequired }: Props
 
     return (
         <Input
-            cyId={cyId}
             label={label}
             placeholder={placeholder}
             name={name}
@@ -53,63 +51,60 @@ const InputTest = ({ cyId, type, mode, maxLength, minLength, isRequired }: Props
 }
 
 describe('<Input />', () => {
-    const cyId = 'field'
-    const selector = `[data-cy="${cyId}"]`
-    const labelSelector = `${selector} [data-cy="${cyId}-label"]`
-    const inputSelector = `${selector} [data-cy="${cyId}-input"]`
-    const passwordButtonSelector = `${selector} [data-cy="${cyId}-password-button"]`
-    const errorMessageSelector = `${selector} [data-cy="${cyId}-error-message"]`
+    const selector = '[data-cy="input"]'
+    const inputSelector = `${selector} [data-cy="input-field"]`
+    const inputPasswordButtonSelector = `${selector} [data-cy="input-password-button"]`
 
     it('Should render the component', () => {
-        cy.mount(<InputTest cyId={cyId} />)
+        cy.mount(<InputTest />)
 
         cy.get(inputSelector).should('exist')
     })
 
     it('Should use the initial value', () => {
-        cy.mount(<InputTest cyId={cyId} />)
+        cy.mount(<InputTest />)
 
         cy.get(inputSelector).should('have.value', initialValue)
     })
 
     it(`Should render the "${InputType.TEXT}" type`, () => {
-        cy.mount(<InputTest cyId={cyId} />)
+        cy.mount(<InputTest />)
 
         cy.get(inputSelector).should('have.prop', 'type', InputType.TEXT)
     })
 
     it(`Should render the "${InputType.EMAIL}" type`, () => {
-        cy.mount(<InputTest cyId={cyId} type={InputType.EMAIL} />)
+        cy.mount(<InputTest type={InputType.EMAIL} />)
 
         cy.get(inputSelector).should('have.prop', 'type', InputType.EMAIL)
     })
 
     it(`Should render the "${InputType.PASSWORD}" type`, () => {
-        cy.mount(<InputTest cyId={cyId} type={InputType.PASSWORD} />)
+        cy.mount(<InputTest type={InputType.PASSWORD} />)
 
         cy.get(inputSelector).should('have.attr', 'type', InputType.PASSWORD)
-        cy.get(passwordButtonSelector).should('have.attr', 'aria-label', 'Mostrar senha')
-        cy.get(passwordButtonSelector).click()
+        cy.get(inputPasswordButtonSelector).should('have.attr', 'aria-label', 'Mostrar senha')
+        cy.get(inputPasswordButtonSelector).click()
 
         cy.get(inputSelector).should('have.attr', 'type', InputType.TEXT)
-        cy.get(passwordButtonSelector).should('have.attr', 'aria-label', 'Esconder senha')
-        cy.get(passwordButtonSelector).click()
+        cy.get(inputPasswordButtonSelector).should('have.attr', 'aria-label', 'Esconder senha')
+        cy.get(inputPasswordButtonSelector).click()
 
         cy.get(inputSelector).should('have.attr', 'type', InputType.PASSWORD)
     })
 
     it('Should use the input modes', () => {
-        cy.mount(<InputTest cyId={cyId} mode={InputMode.TEXT} />)
+        cy.mount(<InputTest mode={InputMode.TEXT} />)
 
         cy.get(inputSelector).should('have.prop', 'inputMode', InputMode.TEXT)
 
-        cy.mount(<InputTest cyId={cyId} mode={InputMode.EMAIL} />)
+        cy.mount(<InputTest mode={InputMode.EMAIL} />)
 
         cy.get(inputSelector).should('have.prop', 'inputMode', InputMode.EMAIL)
     })
 
     it('Should use the required property', () => {
-        cy.mount(<InputTest cyId={cyId} isRequired={true} />)
+        cy.mount(<InputTest isRequired={true} />)
 
         cy.get(inputSelector).should('have.prop', 'required')
     })
@@ -117,7 +112,7 @@ describe('<Input />', () => {
     it('Should type in input', () => {
         const value = 'test'
 
-        cy.mount(<InputTest cyId={cyId} />)
+        cy.mount(<InputTest />)
 
         cy.get(inputSelector).type(value)
         cy.get(inputSelector).should('have.value', `${initialValue}${value}`)
@@ -127,23 +122,23 @@ describe('<Input />', () => {
         const maxLength = 200
         const minLength = 4
 
-        cy.mount(<InputTest cyId={cyId} maxLength={maxLength} minLength={minLength} />)
+        cy.mount(<InputTest maxLength={maxLength} minLength={minLength} />)
 
         cy.get(inputSelector).should('have.attr', 'maxlength', maxLength)
         cy.get(inputSelector).should('have.attr', 'minlength', minLength)
     })
 
     it('Should show the label', () => {
-        cy.mount(<InputTest cyId={cyId} />)
+        cy.mount(<InputTest />)
 
-        cy.get(labelSelector).contains(label)
+        cy.get(`${selector} [data-cy="label"]`).contains(label)
     })
 
     it('Should show the error message', () => {
-        cy.mount(<InputTest cyId={cyId} />)
+        cy.mount(<InputTest />)
 
         cy.get(inputSelector).clear()
         cy.get(inputSelector).blur()
-        cy.get(errorMessageSelector).contains(REQUIRED_FIELD)
+        cy.get(`${selector} [data-cy="error-message"]`).contains(REQUIRED_FIELD)
     })
 })
