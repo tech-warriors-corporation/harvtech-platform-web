@@ -45,6 +45,7 @@ const AutocompleteTest = ({ isRequired }: Props) => {
     )
 }
 
+// TODO: add more tests
 describe('<Autocomplete />', () => {
     const selector = '[data-cy="autocomplete"]'
     const inputSelector = `${selector} [data-cy="autocomplete-input"]`

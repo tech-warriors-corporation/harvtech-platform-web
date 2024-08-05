@@ -1,7 +1,7 @@
 import { AutocompleteOptions } from '~components/Autocomplete/types'
 import { ModelType } from '~enums/ModelType'
 
-export const cultivationItems: AutocompleteOptions = [
+export const modelTypeAutocompleteOptions: AutocompleteOptions = [
     {
         value: ModelType.RICE_LEAF,
         text: 'Arroz',
