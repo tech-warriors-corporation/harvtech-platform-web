@@ -5,4 +5,5 @@ export const StyledLabel = styled.label`
     font-weight: 500;
     line-height: 1.1;
     margin-bottom: 6px;
+    width: fit-content;
 `
