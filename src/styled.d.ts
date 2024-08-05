@@ -12,6 +12,7 @@ declare module 'styled-components' {
             lighterGray: string
             red: string
             purple: string
+            blue: string
         }
         spaces: {
             one: string

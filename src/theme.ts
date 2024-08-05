@@ -13,6 +13,7 @@ export const theme: DefaultTheme = {
         lighterGray: `rgba(${backgroundRgb}, .12)`,
         red: '#fb2416',
         purple: '#a315fb',
+        blue: '#1688f1',
     },
     spaces: {
         one: '2px',
