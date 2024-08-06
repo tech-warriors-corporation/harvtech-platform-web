@@ -7,12 +7,11 @@ export const modelTypeAutocompleteOptions: AutocompleteOptions = [
         text: 'Arroz',
         imageUrl: './images/rice.png',
     },
-    // TODO: add potato only in the future
-    // {
-    //     value: ModelType.POTATO_LEAF,
-    //     text: 'Batata',
-    //     imageUrl: './images/potato.png',
-    // },
+    {
+        value: ModelType.POTATO_LEAF,
+        text: 'Batata',
+        imageUrl: './images/potato.png',
+    },
     {
         value: ModelType.BEAN_LEAF,
         text: 'Feijão',
