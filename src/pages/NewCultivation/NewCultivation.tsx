@@ -127,7 +127,7 @@ export const NewCultivation: React.FC = () => {
                 <StyledPredictedImages>
                     {predictedImages.map(({ content, text, probability }, index) => (
                         <StyledPredictedImage key={index}>
-                            {probability >= 85 && (
+                            {probability >= 90 && (
                                 <Tooltip text={'Probabilidade alta'}>
                                     <StyledIconContainer>
                                         <MdCheck aria-hidden={true} />
