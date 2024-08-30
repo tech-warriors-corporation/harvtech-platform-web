@@ -119,20 +119,20 @@ You can access [our Figma project](https://www.figma.com/proto/PpsZVwe459CmUD76Y
 - [X] Configure environment variables in [Netlify](https://www.netlify.com).
 - [X] Create a prototype in [Figma](https://www.figma.com) and document here.
 - [X] Add [Axios](https://axios-http.com).
-- [ ] Add and create components with [Ariakit](https://ariakit.org).
+- [X] Add and create components with [Ariakit](https://ariakit.org).
 - [ ] Add different languages.
 - [ ] Style noscript.
 - [ ] Maybe use IoT components.
-- [ ] Upload in Azure.
-- [ ] Code Coverage with Cypress.
+- [X] Upload in Azure.
+- [X] Code Coverage with Cypress.
 - [ ] Read about maps for mark points and monitoring in farming (satellite JS library), like [Satellite (GitHub)](https://github.com/shashwatak/satellite-js) and [Satellite (YouTube)](https://www.youtube.com/watch?v=SctXG86xPw0).
-- [ ] Review project.
+- [X] Review project.
 - [ ] Add [Rollbar](https://rollbar.com).
-- [ ] Set privacy policy in different screens in project.
-- [ ] Use barrel for files like `index.ts` in folders.
-- [ ] Adjust long imports and type problems.
-- [ ] Use animations.
-- [ ] Add `robots.txt`.
+- [X] Set privacy policy in different screens in project.
+- [X] Use barrel for files like `index.ts` in folders.
+- [X] Adjust long imports and type problems.
+- [X] Use animations.
+- [X] Add `robots.txt`.
 - [ ] Create checking input length above the component like `12/250 chars`.
 - [ ] Add [React Helmet](https://github.com/nfl/react-helmet).
 - [ ] Add information logged user.
