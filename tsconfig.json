@@ -44,7 +44,6 @@
         }
     },
     "include": [
-        "vite.config.ts",
         "**/*.ts",
         "**/*.tsx"
     ],
@@ -54,6 +53,7 @@
         }
     ],
     "exclude": [
+        "vite.config.ts",
         "node_modules",
         "*.spec.cy.tsx",
         "*.test.cy.tsx",
