@@ -10,6 +10,6 @@
 [headers.values]
     Cache-Control = "max-age=31536000"
     X-Content-Type-Options = "nosniff"
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com 'nonce-*'; font-src 'self' https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
