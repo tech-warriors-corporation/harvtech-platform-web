@@ -4,7 +4,7 @@ import { MdCheck } from 'react-icons/md'
 import ReactMarkdown from 'react-markdown'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { AxiosError } from 'axios'
+import { AxiosError, HttpStatusCode } from 'axios'
 
 import { modelTypeAutocompleteOptions } from './constants'
 import { schema } from './schema'
@@ -76,11 +76,16 @@ export const NewCultivation: React.FC = () => {
                     shouldValidate: true,
                 })
             } catch (error) {
+                const response = (error as AxiosError)?.response
+                const status = response?.status
+                let message =
+                    (response?.data as ErrorModel)?.error?.message || 'Ocorreu um problema ao analisar uma imagem'
+
                 console.error(error)
-                toast.error(
-                    ((error as AxiosError)?.response?.data as ErrorModel)?.error?.message ||
-                        'Ocorreu um problema ao analisar uma imagem',
-                )
+
+                if (status === HttpStatusCode.PayloadTooLarge) message = 'O tamanho de uma imagem é muito grande'
+
+                toast.error(message)
             }
         }
     }
