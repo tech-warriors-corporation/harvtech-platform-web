@@ -136,6 +136,7 @@ You can access [our Figma project](https://www.figma.com/proto/PpsZVwe459CmUD76Y
 - [ ] Create checking input length above the component like `12/250 chars`.
 - [ ] Add [React Helmet](https://github.com/nfl/react-helmet).
 - [ ] Add information logged user.
+- [X] Run OWASP ZAP test.
 
 ## Thanks for read
 Product made by **[Tech Warriors](https://github.com/tech-warriors-corporation)**.
